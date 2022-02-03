@@ -21,6 +21,7 @@ public class sw1289 {
                     chk = in.charAt(j);
                 }
             }
+            
             System.out.println("#" + (i+1) + " " + cnt);
         }
     }
