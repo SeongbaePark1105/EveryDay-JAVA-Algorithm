@@ -32,11 +32,9 @@ public class bk2304 {
 		maxHeight = list.get(0).height; // 처음에는 0번 인덱스를 최고 높이로 설정
 		maxHeighty = 0;
 		for (z = 0; z < N; z++) {
-			if (z == N - 1)  // 아래 if문 비교하면 배열 초과 오류가 뜨니 방지
-				break;
-			 else if (maxHeight <= list.get(z+1).height) { // 빌딩 높이를 비교해서 최대 높이 설정
-				maxHeight = list.get(z+1).height;
-				maxHeighty = z+1;
+			if (maxHeight <= list.get(z).height) { // 빌딩 높이를 비교해서 최대 높이 설정
+				maxHeight = list.get(z).height;
+				maxHeighty = z;
 			}
 		}
 
