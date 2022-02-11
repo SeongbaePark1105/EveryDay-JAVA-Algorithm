@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class bk16926 {
-	static int N, M, R, A, arr[][], temp, dx, dy, Indx, Indy; // N, M 배열의 크기 N*M , R은 회전의 수, A는 배열의 원소, temp는 교체 값
+	static int N, M, R, arr[][], temp, dx, dy; // N, M 배열의 크기 N*M , R은 회전의 수, A는 배열의 원소, temp는 교체 값
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,104 +15,63 @@ public class bk16926 {
 		M = Integer.parseInt(st.nextToken());
 		R = Integer.parseInt(st.nextToken());
 		arr = new int[N][M];
-
+		boolean chk = true;
+		int min = Math.min(N, M);
+		while (chk) {
+			if (N < 2 || N > 300 || M < 2 || M > 300 || R <= 0 || R > 1000 || (min % 2) != 0) {
+				System.out.println("다시 입력하세요.");
+				st = new StringTokenizer(br.readLine(), " ");
+				N = Integer.parseInt(st.nextToken());
+				M = Integer.parseInt(st.nextToken());
+				R = Integer.parseInt(st.nextToken());
+				arr = new int[N][M];
+			} else
+				chk = false;
+		}
 		for (int y = 0; y < N; y++) {
 			st = new StringTokenizer(br.readLine(), " ");
 			for (int x = 0; x < M; x++) {
 				arr[y][x] = Integer.parseInt(st.nextToken());
 			}
 		}
-		for (int i = 1; i <= R; i++) { // 횟수 작동
-			// 외각 부분
-			dx = 0;
-			dy = 0;
-			Indx = 1;
-			Indy = 1;
 
-			// ↓
-			for (; dy < N; dy++) {
-				if (dy + 1 == N)
-					break;
-				else {
-					temp = arr[dy + 1][dx];
-					arr[dy + 1][dx] = arr[0][0];
-					arr[0][0] = temp;
-				}
-			}
+		for (int r = 0; r < R; r++) {
+			int start = 0;
+			while (N / 2 > start && M / 2 > start) { // 횟수 작동
+				// 외각 부분
+				// 크기가 커질수록 내부가 안늘어남 헬스갔다와서 해결하셈
 
-			// →
-			for (; dx < M; dx++) {
-				if (dx + 1 == M)
-					break;
-				else {
-					temp = arr[dy][dx + 1];
-					arr[dy][dx + 1] = arr[0][0];
-					arr[0][0] = temp;
-				}
-			}
-			// ↑
-			for (; dy >= 0; dy--) {
-				if (dy == 0)
-					break;
-				else {
-					temp = arr[dy - 1][dx];
-					arr[dy - 1][dx] = arr[0][0];
-					arr[0][0] = temp;
-				}
-			}
+				// ↓
+				for (dy = start + 1; dy < N - start; dy++) {
+					temp = arr[dy][start];
+					arr[dy][start] = arr[start][start];
+					arr[start][start] = temp;
 
-			// ←
-			for (; dx >= 0; dx--) {
-				if (dx == 0)
-					break;
-				else {
-					temp = arr[dy][dx - 1];
-					arr[dy][dx - 1] = arr[0][0];
-					arr[0][0] = temp;
-				}
-			}
-			// 내부 부분
-
-			// ↓
-			if (!(Indy + 1 == N && Indx + 1 == M)) { // 내부를 돌릴 수 있는 지 없는 지 체크
-				for (; Indy < N; Indy++) {
-					if (Indy + 2 == N)
-						break;
-					else {
-						temp = arr[Indy + 1][Indx];
-						arr[Indy + 1][Indx] = arr[1][1];
-						arr[1][1] = temp;
-					}
 				}
 
 				// →
-				for (; Indx < M; Indx++) {
-					if (Indx + 2 == M)
-						break;
-					else {
-						temp = arr[Indy][Indx + 1];
-						arr[Indy][Indx + 1] = arr[1][1];
-						arr[1][1] = temp;
-					}
+				for (dx = start + 1; dx < M - start; dx++) {
+					temp = arr[N - start - 1][dx];
+					arr[N - start - 1][dx] = arr[start][start];
+					arr[start][start] = temp;
+
 				}
-
 				// ↑
-				for (; Indy > 1; Indy--) {
-
-					temp = arr[Indy - 1][Indx];
-					arr[Indy - 1][Indx] = arr[1][1];
-					arr[1][1] = temp;
+				for (dy = N - start - 2; dy >= start; dy--) {
+					temp = arr[dy][M - start - 1];
+					arr[dy][M - start - 1] = arr[start][start];
+					arr[start][start] = temp;
 
 				}
 
 				// ←
-				for (; Indx > 1; Indx--) {
+				for (dx = M - start - 2; dx >= start; dx--) {
 
-					temp = arr[Indy][Indx - 1];
-					arr[Indy][Indx - 1] = arr[1][1];
-					arr[1][1] = temp;
-
+					temp = arr[start][dx];
+					arr[start][dx] = arr[start][start];
+					arr[start][start] = temp;
 				}
+				start++;
 			}
 		}
 		for (int i = 0; i < N; i++) {
@@ -121,6 +80,5 @@ public class bk16926 {
 			}
 			System.out.println();
 		}
-
 	}
 }
