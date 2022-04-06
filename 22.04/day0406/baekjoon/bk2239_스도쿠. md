@@ -1,0 +1,81 @@
+백준_2239_스도쿠
+=============
+* 난이도 : 골드 4
+* 외부 링크 : [bk2239](https://www.acmicpc.net/problem/2239)
+
+* 접근 방식
+	+ 재귀 dfs를 통해 풀이를 접근하였습니다.
+  + dfs 에서 빈 값에 행과 열 값들을 비교해주기위해 c, r 수식을 완성하였고
+  + checked 함수에서 3x3에서 겹치는 지 비교해주기위한 c3, r3 수식을 완성해서
+  + 재귀를 완성하였습니다.
+
+```java
+package day0406;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class bk2239_스도쿠 {
+	static int N;
+	static int arr[][] = new int[9][9];
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		for (int i = 0; i < 9; i++) {
+			char[] c = br.readLine().toCharArray();
+			for (int j = 0; j < 9; j++)
+				arr[i][j] = c[j] - '0';
+		}
+		dfs(0);
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++)
+				System.out.print(arr[i][j]);
+			System.out.println();
+		}
+	}
+
+	static boolean flag;
+
+	static void dfs(int s) {
+		int c = s / 9;
+		int r = s % 9;
+		if (s == 81) {
+			flag = true;
+			return;
+		}
+
+		if (arr[c][r] != 0)
+			dfs(s + 1);
+		else {
+			for (int i = 1; i <= 9; i++) {
+				if (!checked(c, r, i)) // 이 조건을 통과하면 행렬 9개의 칸과 스도쿠 3x3 안에 겹치는 숫자가 없기 때문에
+					continue;
+				arr[c][r] = i; // i값을 넣어줄수 있다.
+				dfs(s + 1); // 그리고 재귀로 넘겨줌
+				if (flag) // 81을 찍고 난 뒤에는 재귀가 멈춰도 0을 넣어주면 안되니 return
+					return;
+				arr[c][r] = 0; // 그러나 다른 쪽에서 만족을 하지 못하는 경우 재귀가 계속 돌아가지 않고 돌아와서 다시 그 값을 0으로 넣어주고 다음 i값으로 진행
+			}
+		}
+	}
+
+	static boolean checked(int c, int r, int n) {
+		for (int j = 0; j < 9; j++) { // 0인 지점에서 그 부분에서  9개칸 중에서 겹치는 숫자가 있으면 false
+			if (arr[j][r] == n || arr[c][j] == n) {
+				return false;
+			}
+		}
+		// 위에 for문을 통과하면 이제 아래 스도쿠 9개중에 1개(3x3) 비교하는 for문
+		int c3 = (c/3) * 3; 
+		int r3 = r - (r%3);
+		for (int y = c3; y < c3 + 3; y++) {
+			for (int x = r3; x < r3 + 3; x++) {
+				if (arr[y][x] == n) { // 1개안에 있는 숫자가 하나라도 겹치면 false 반환
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+}
