@@ -1,0 +1,48 @@
+# 백준_1476_날짜계산
+
+- 난이도 : 실버 5
+
+- 외부링크 : [bk1476](https://www.acmicpc.net/problem/1476)
+
+- 접근 방식
+
+  > 반복문을 이용해서 계속 값을 증가시키고
+  > 입력받은 값 모두와 같아질때 까지 반복시켰습니다.
+```java
+package day0626;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class bk1476_날짜계산 {
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		int E = Integer.parseInt(st.nextToken());
+		int S = Integer.parseInt(st.nextToken());
+		int M = Integer.parseInt(st.nextToken());
+		int e = 1, s = 1, m = 1;
+		int cnt = 1;
+		
+		while(true) {
+			if(e%16 == 0)
+				e-=15;
+			if(s%29 == 0)
+				s-=28;
+			if(m%20 == 0)
+				m-=19;
+			
+			if (e == E && s == S && m == M) {
+				System.out.println(cnt);
+				return;
+			}
+			e++;
+			s++;
+			m++;
+			cnt++;
+		}
+	}
+}
+```
