@@ -1,4 +1,4 @@
-# Programmers [완전탐](https://school.programmers.co.kr/learn/courses/30/lessons/42840)
+# Programmers [완전탐색](https://school.programmers.co.kr/learn/courses/30/lessons/42840)
 
 ### 난이도 ★
 
