@@ -1,4 +1,4 @@
-# Programmers [여행경](https://school.programmers.co.kr/learn/courses/30/lessons/43164)
+# Programmers [여행경로](https://school.programmers.co.kr/learn/courses/30/lessons/43164)
 
 ### 난이도 ★★★
 
