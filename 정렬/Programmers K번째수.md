@@ -1,4 +1,4 @@
-# Programmers [K번째](https://school.programmers.co.kr/learn/courses/30/parts/12198)
+# Programmers [K번째 수](https://school.programmers.co.kr/learn/courses/30/parts/12198)
 
 ### 난이도 ★
 
