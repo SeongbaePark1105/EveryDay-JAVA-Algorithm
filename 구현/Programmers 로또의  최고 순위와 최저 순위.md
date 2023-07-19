@@ -1,4 +1,4 @@
-# Programmers [단어 퍼즐](https://school.programmers.co.kr/learn/courses/18/lessons/1882)
+# Programmers [로또의 최고 순위와 최저 순위](https://school.programmers.co.kr/learn/courses/30/lessons/1882)
 
 ### 난이도 ★
 
