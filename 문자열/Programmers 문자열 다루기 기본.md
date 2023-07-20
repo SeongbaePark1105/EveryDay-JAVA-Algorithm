@@ -26,7 +26,7 @@
 
 #### 풀이
 
-```sql
+```java
 import java.util.*;
 class Solution {
     public boolean solution(String s) {

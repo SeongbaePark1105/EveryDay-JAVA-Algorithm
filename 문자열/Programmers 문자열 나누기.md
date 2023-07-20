@@ -47,7 +47,7 @@
 
 #### 풀이
 
-```sql
+```java
 import java.util.*;
 class Solution {
     public int solution(String s) {
