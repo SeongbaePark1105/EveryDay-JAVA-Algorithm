@@ -1,6 +1,6 @@
 # Softeer [플레이페어 암호](https://softeer.ai/practice/info.do?idx=1&eid=804&sw_prbl_sbms_sn=234070)
 
-### 난이도 ★★
+### 난이도 ★★★
 
 ---
 
