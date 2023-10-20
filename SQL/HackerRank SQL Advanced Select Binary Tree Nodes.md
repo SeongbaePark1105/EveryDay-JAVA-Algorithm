@@ -1,6 +1,6 @@
 # HackerRank [Binary Tree Nodes](https://www.hackerrank.com/challenges/binary-search-tree-1/problem?isFullScreen=true)
 
-### 난이도 Advanced
+### 난이도 Medium
 
 ---
 
