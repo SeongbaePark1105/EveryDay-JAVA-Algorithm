@@ -1,4 +1,4 @@
-# Programmers [멀리 뛰기](https://school.programmers.co.kr/learn/courses/18/lessons/12900)
+# Programmers [멀리 뛰기](https://school.programmers.co.kr/learn/courses/30/lessons/12914)
 
 ### 난이도 ★★
 
